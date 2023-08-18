@@ -19,8 +19,12 @@ func (Encoder) AppendBeginMarker(dst []byte) []byte {
 }
 
 // AppendEndMarker inserts a map end into the dst byte array.
-func (Encoder) AppendEndMarker(dst []byte) []byte {
-	return append(dst, '}')
+func (e Encoder) AppendEndMarker(dst []byte) []byte {
+	for i := 0; i < e.OpenNamespaces; i++ {
+		dst = append(dst, '}')
+	}
+	e.OpenNamespaces = 0
+	return dst
 }
 
 // AppendLineBreak appends a line break.

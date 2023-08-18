@@ -17,3 +17,9 @@ func (e Encoder) AppendKey(dst []byte, key string) []byte {
 	}
 	return append(e.AppendString(dst, key), ':')
 }
+
+func (e Encoder) AppendNamespace(dst []byte, namespace string) []byte {
+	dst = e.AppendKey(dst, namespace)
+	e.OpenNamespaces += 1
+	return e.AppendBeginMarker(dst)
+}

@@ -23,6 +23,10 @@ func With() zerolog.Context {
 	return Logger.With()
 }
 
+func WithNamespace(name string) zerolog.Context {
+	return Logger.WithNamespace(name)
+}
+
 // Level creates a child logger with the minimum accepted level set to level.
 func Level(level zerolog.Level) zerolog.Logger {
 	return Logger.Level(level)
